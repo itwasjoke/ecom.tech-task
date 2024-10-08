@@ -1,0 +1,28 @@
+version: "3.1"
+
+volumes:
+  pg_ecomtask:
+
+services:
+  ecomtask_db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=ecom_user
+      - POSTGRES_PASSWORD=qwerty123
+      - POSTGRES_DB=ecomtask
+    volumes:
+      - pg_ecomtask:/var/lib/postgresql/data
+    ports:
+      - "9601:5432"
+  ecomtask_app:
+    restart: always
+    build: .
+    ports:
+      - "9600:8080"
+    depends_on:
+      - ecomtask_db
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://ecomtask_db:5432/ecomtask"
+      SPRING_DATASOURCE_USERNAME: ecom_user
+      SPRING_DATASOURCE_PASSWORD: qwerty123
