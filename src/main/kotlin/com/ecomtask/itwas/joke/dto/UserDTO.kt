@@ -7,5 +7,5 @@ data class UserDTO(
     val age: Int,
     val password: String,
     val description: String?,
-    val userType: UserType,
+    val userType: String,
 )
