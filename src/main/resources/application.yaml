@@ -1,9 +1,3 @@
 spring:
-  main:
-    datasource:
-      url: ""
-      username: ""
-      password: ""
-
-server:
-  port: 8080
+  profiles:
+    active: dev

@@ -1,5 +1,6 @@
 package com.ecomtask.itwas.joke.entity
 
+import com.ecomtask.itwas.joke.enums.UserType
 import jakarta.persistence.*
 
 @Entity
@@ -18,7 +19,10 @@ data class User (
     @Column(nullable = false)
     var password: String = "",
 
-    var description: String = "",
+    var description: String? = null,
+
+    @Enumerated(EnumType.STRING)
+    var userType: UserType = UserType.NONE,
 
     @ManyToMany(mappedBy = "students")
     var courses: MutableSet<Course> = mutableSetOf()
