@@ -10,7 +10,7 @@ class CourseScheduler(private val courseService: CourseService) {
     @Scheduled(cron = "0 0 0 1 * ?")
     fun clearOldCourses() {
         val oneYearAgo = Calendar.getInstance().apply {
-            add(Calendar.YEAR, -1) // Уменьшить год
+            add(Calendar.YEAR, -1)
         }.time
         courseService.deleteOldCourses(oneYearAgo)
     }
