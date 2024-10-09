@@ -20,14 +20,14 @@ class UserMapper {
             ) {
                 throw IncorrectUserFieldException(errorMessage)
             }
-            return User(
-                username = userRequestDTO.name,
-                login = userRequestDTO.login,
-                password = userRequestDTO.password,
-                description = userRequestDTO.description,
-                userType = userType,
-                age = userRequestDTO.age
-            )
+            val user = User()
+            user.fullname = userRequestDTO.name
+            user.login = userRequestDTO.login
+            user.rawPassword = userRequestDTO.password
+            user.description = userRequestDTO.description
+            user.userType = userType
+            user.age = userRequestDTO.age
+            return user
         } catch (e: Exception){
             throw IncorrectUserFieldException(errorMessage)
         }
@@ -41,7 +41,7 @@ class UserMapper {
         }
         return UserResponseDTO(
             id = user.id,
-            name = user.username,
+            name = user.fullname,
             age = user.age,
             type = userRole,
             description = user.description

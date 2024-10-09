@@ -59,17 +59,6 @@ class UserControllerTest {
         "error"
     )
 
-    private val createdUser = User(
-        0,
-        "testUser",
-        "test",
-        1,
-        "qwerty",
-        null,
-        UserType.NONE,
-        mutableSetOf()
-    )
-
     private val updatedUser = UserRequestDTO(
         "Andrey Vasilev",
         20,
@@ -86,11 +75,24 @@ class UserControllerTest {
         "Нет роли",
         null
     )
+    fun getCreatedUser(): User {
+        val createdUser = User()
+        createdUser.id = 0
+        createdUser.fullname = "testUser"
+        createdUser.login = "test"
+        createdUser.age = 1
+        createdUser.rawPassword = "qwerty"
+        createdUser.description = null
+        createdUser.userType = UserType.NONE
+        createdUser.courses = mutableSetOf()
+        return createdUser
+    }
 
     @Test
     fun `createUser return created user ID`() {
         val jsonRequest = objectMapper.writeValueAsString(validUserRequestDTO)
-        whenever(userMapper.userDTOtoUser(any())).thenReturn(createdUser)
+
+        whenever(userMapper.userDTOtoUser(any())).thenReturn(getCreatedUser())
         whenever(userService.createUser(any())).thenReturn(1L)
 
         performPostRequest(
@@ -119,7 +121,7 @@ class UserControllerTest {
     @Test
     fun `getUserProfile return UserResponseDTO`() {
         val jsonRequest = objectMapper.writeValueAsString(validUserRequestDTO)
-        whenever(userMapper.userDTOtoUser(any())).thenReturn(createdUser)
+        whenever(userMapper.userDTOtoUser(any())).thenReturn(getCreatedUser())
         whenever(userService.createUser(any())).thenReturn(1L)
 
         performPostRequest(
@@ -144,7 +146,7 @@ class UserControllerTest {
     @Test
     fun `getUserProfile return exception`() {
         val jsonRequest = objectMapper.writeValueAsString(validUserRequestDTO)
-        whenever(userMapper.userDTOtoUser(any())).thenReturn(createdUser)
+        whenever(userMapper.userDTOtoUser(any())).thenReturn(getCreatedUser())
         whenever(userService.createUser(any())).thenReturn(1L)
 
         performPostRequest(
@@ -170,7 +172,7 @@ class UserControllerTest {
     @Test
     fun `editProfile changed User and return nothing`() {
         val jsonRequest = objectMapper.writeValueAsString(validUserRequestDTO)
-        whenever(userMapper.userDTOtoUser(any())).thenReturn(createdUser)
+        whenever(userMapper.userDTOtoUser(any())).thenReturn(getCreatedUser())
         whenever(userService.createUser(any())).thenReturn(1L)
 
         performPostRequest(
@@ -190,7 +192,7 @@ class UserControllerTest {
     @Test
     fun `deleteProfile deleting User and return nothing`() {
         val jsonRequest = objectMapper.writeValueAsString(validUserRequestDTO)
-        whenever(userMapper.userDTOtoUser(any())).thenReturn(createdUser)
+        whenever(userMapper.userDTOtoUser(any())).thenReturn(getCreatedUser())
         whenever(userService.createUser(any())).thenReturn(1L)
 
         performPostRequest(
