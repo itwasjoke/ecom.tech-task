@@ -38,6 +38,9 @@ class User: UserDetails {
         return mutableListOf(SimpleGrantedAuthority("ROLE_$userType"))
     }
 
+    @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
+    var coursesWhatCreated: MutableSet<Course> = mutableSetOf()
+
     override fun getPassword(): String {
         return rawPassword
     }

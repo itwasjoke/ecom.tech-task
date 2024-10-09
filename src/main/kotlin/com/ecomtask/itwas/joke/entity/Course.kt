@@ -1,7 +1,7 @@
 package com.ecomtask.itwas.joke.entity
 
 import jakarta.persistence.*
-import java.util.Date
+import java.util.*
 
 @Entity
 @Table(name = "courses")
@@ -30,6 +30,7 @@ data class Course (
     )
     var students: MutableSet<User> = mutableSetOf(),
 
-    @OneToOne(cascade = [CascadeType.ALL], orphanRemoval = true)
+    @ManyToOne(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "turn_id", nullable = false)
     var creator: User? = null
 )
