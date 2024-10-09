@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(
-    value = ["/users"],
+    value = ["/courses"],
     produces = [MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8"]
 )
 class CourseController(private val courseService: CourseService) {
@@ -21,8 +21,8 @@ class CourseController(private val courseService: CourseService) {
         return courseService.getCourse(id)
     }
     @PutMapping
-    fun editCourseMainInfo(@RequestBody courseRequestDTO: CourseRequestDTO) {
-        courseService.changeCourse(courseRequestDTO)
+    fun editCourseMainInfo(@RequestParam studentId: Long, @RequestParam courseId: Long) {
+        courseService.addStudentForCourse(studentId, courseId)
     }
     @DeleteMapping
     fun deleteCourse(@RequestParam id: Long) {

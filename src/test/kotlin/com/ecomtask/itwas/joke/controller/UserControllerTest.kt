@@ -80,6 +80,7 @@ class UserControllerTest {
     )
 
     private val userProfile = UserResponseDTO(
+        1,
         "testUser",
         1,
         "Нет роли",

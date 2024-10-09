@@ -10,4 +10,6 @@ interface UserRepository: JpaRepository<User, Long>{
 
     fun existsUserByLogin(login: String): Boolean
     fun deleteUserByLogin(login: String)
+
+    fun findUserById(id: Long): User?
 }

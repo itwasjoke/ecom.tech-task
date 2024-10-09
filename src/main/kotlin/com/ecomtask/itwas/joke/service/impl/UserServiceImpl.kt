@@ -45,4 +45,8 @@ class UserServiceImpl(
             throw NoUserFoundException("No user found in deleteUser fun.")
         }
     }
+
+    override fun findUserById(id: Long): User {
+        return userRepository.findUserById(id) ?: throw NoUserFoundException("No user found in findUserById fun.")
+    }
 }

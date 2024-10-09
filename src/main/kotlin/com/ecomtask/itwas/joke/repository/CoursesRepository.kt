@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CoursesRepository: JpaRepository<Course, Long> {
-    fun findAllById(id: Long): Course?
+    fun findCourseById(id: Long): Course?
 }

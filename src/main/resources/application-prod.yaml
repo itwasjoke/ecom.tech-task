@@ -1,9 +1,9 @@
 spring:
   main:
     datasource:
-      url: ""
-      username: ""
-      password: ""
+      url: jdbc:postgresql://localhost:9601/ecomtask
+      username: ecom_user
+      password: qwerty123
   jpa:
     show-sql: false
     hibernate:

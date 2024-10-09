@@ -9,5 +9,5 @@ data class CourseResponseDTO(
     val dateStart: Date,
     val dateEnd: Date,
     val creator: UserResponseDTO,
-    val students: List<UserResponseDTO>
+    val students: MutableList<UserResponseDTO>
 )

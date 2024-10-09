@@ -11,4 +11,5 @@ interface UserService {
 
     fun findUserByLogin(login: String): User
     fun deleteUser(login: String)
+    fun findUserById(id: Long): User
 }

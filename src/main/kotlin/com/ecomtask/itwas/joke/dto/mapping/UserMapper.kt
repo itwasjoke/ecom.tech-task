@@ -40,10 +40,18 @@ class UserMapper {
             UserType.TEACHER -> "Преподаватель"
         }
         return UserResponseDTO(
+            id = user.id,
             name = user.username,
             age = user.age,
             type = userRole,
             description = user.description
         )
+    }
+    fun userListToUserDTOList(userList: MutableSet<User>): MutableList<UserResponseDTO>{
+        var userResponseList: MutableList<UserResponseDTO> = mutableListOf()
+        for (user in userList) {
+            userResponseList.add(userToUserDTO(user))
+        }
+        return userResponseList
     }
 }

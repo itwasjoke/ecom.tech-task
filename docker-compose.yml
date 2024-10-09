@@ -22,7 +22,3 @@ services:
       - "9600:8080"
     depends_on:
       - ecomtask_db
-    environment:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://ecomtask_db:5432/ecomtask"
-      SPRING_DATASOURCE_USERNAME: ecom_user
-      SPRING_DATASOURCE_PASSWORD: qwerty123
