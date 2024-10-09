@@ -8,6 +8,5 @@ data class CourseResponseDTO(
     val description: String?,
     val dateStart: Date,
     val dateEnd: Date,
-    val creator: UserResponseDTO,
-    val students: MutableList<UserResponseDTO>
+    val creator: UserResponseDTO
 )

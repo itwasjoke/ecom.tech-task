@@ -8,9 +8,11 @@ import com.ecomtask.itwas.joke.exception.user.LoginAlreadyExistsException
 import com.ecomtask.itwas.joke.exception.user.NoUserFoundException
 import com.ecomtask.itwas.joke.repository.UserRepository
 import com.ecomtask.itwas.joke.service.UserService
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
+@Transactional
 open class UserServiceImpl(
     private val userRepository: UserRepository,
     private val userMapper: UserMapper
@@ -52,5 +54,9 @@ open class UserServiceImpl(
 
     override fun findUserById(id: Long): User {
         return userRepository.findUserById(id) ?: throw NoUserFoundException("No user found in findUserById fun.")
+    }
+
+    override fun getUserListOfCourse(courseId: Long): List<UserResponseDTO> {
+        return userMapper.userListToUserDTOList(userRepository.findAllByCourses_Id(courseId))
     }
 }

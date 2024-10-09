@@ -47,7 +47,7 @@ class UserMapper {
             description = user.description
         )
     }
-    fun userListToUserDTOList(userList: MutableSet<User>): MutableList<UserResponseDTO>{
+    fun userListToUserDTOList(userList: MutableList<User>): List<UserResponseDTO>{
         var userResponseList: MutableList<UserResponseDTO> = mutableListOf()
         for (user in userList) {
             userResponseList.add(userToUserDTO(user))

@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository
 @Repository
 interface UserRepository: JpaRepository<User, Long>{
     fun findUserByLogin(login: String): User?
-
     fun existsUserByLogin(login: String): Boolean
     fun deleteUserByLogin(login: String)
-
     fun findUserById(id: Long): User?
+    fun findAllByCourses_Id(id: Long): MutableList<User>
 }

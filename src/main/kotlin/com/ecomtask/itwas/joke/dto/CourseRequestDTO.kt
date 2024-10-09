@@ -7,5 +7,5 @@ data class CourseRequestDTO(
     var description: String,
     var dateStart: Date,
     var dateEnd: Date,
-    var creator: String
+    var creator: Long
 )

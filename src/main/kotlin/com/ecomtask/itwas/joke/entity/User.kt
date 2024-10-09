@@ -1,6 +1,7 @@
 package com.ecomtask.itwas.joke.entity
 
 import com.ecomtask.itwas.joke.enumc.UserType
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 
 @Entity
@@ -27,6 +28,7 @@ data class User (
     @Enumerated(EnumType.STRING)
     var userType: UserType = UserType.NONE,
 
-    @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @JsonIgnore
     var courses: MutableSet<Course> = mutableSetOf()
 )

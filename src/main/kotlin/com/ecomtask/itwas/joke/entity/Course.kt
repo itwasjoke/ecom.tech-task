@@ -22,7 +22,7 @@ data class Course (
     @Column(nullable = false)
     var dateEnd: Date = Date(),
 
-    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE], fetch = FetchType.EAGER)
+    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE], fetch = FetchType.LAZY)
     @JoinTable(
         name = "courses_students",
         joinColumns = [JoinColumn(name = "course_id", referencedColumnName = "id")],

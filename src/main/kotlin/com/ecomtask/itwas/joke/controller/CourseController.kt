@@ -2,6 +2,7 @@ package com.ecomtask.itwas.joke.controller
 
 import com.ecomtask.itwas.joke.dto.CourseRequestDTO
 import com.ecomtask.itwas.joke.dto.CourseResponseDTO
+import com.ecomtask.itwas.joke.dto.UserResponseDTO
 import com.ecomtask.itwas.joke.service.CourseService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
@@ -19,6 +20,10 @@ class CourseController(private val courseService: CourseService) {
     @GetMapping
     fun getCourse(@RequestParam id: Long): CourseResponseDTO {
         return courseService.getCourse(id)
+    }
+    @GetMapping("/list")
+    fun getStudentsList(@RequestParam courseId: Long): List<UserResponseDTO> {
+        return courseService.getStudentListOfCourse(courseId)
     }
     @PutMapping
     fun editCourseMainInfo(@RequestParam studentId: Long, @RequestParam courseId: Long) {

@@ -36,8 +36,6 @@ class CourseMapper(private val userMapper: UserMapper) {
         }
     }
     fun courseToCourseDTO(course: Course): CourseResponseDTO {
-        println(course)
-        val listOfStudents = userMapper.userListToUserDTOList(course.students)
         val creator = course.creator?.let { userMapper.userToUserDTO(it) }
         if (creator != null) {
             return CourseResponseDTO(
@@ -46,8 +44,7 @@ class CourseMapper(private val userMapper: UserMapper) {
                 description = course.description,
                 dateStart = course.dateStart,
                 dateEnd = course.dateEnd,
-                creator = creator,
-                students = listOfStudents
+                creator = creator
             )
         } else {
             throw UnknownCourseDataException("No User for Course creator.")

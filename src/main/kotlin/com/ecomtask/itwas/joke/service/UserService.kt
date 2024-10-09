@@ -8,8 +8,8 @@ interface UserService {
     fun createUser(userRequestDTO: UserRequestDTO): Long
     fun getUserProfile(login: String): UserResponseDTO
     fun editProfile(userRequestDTO: UserRequestDTO)
-
     fun findUserByLogin(login: String): User
     fun deleteUser(login: String)
     fun findUserById(id: Long): User
+    fun getUserListOfCourse(courseId: Long): List<UserResponseDTO>
 }
