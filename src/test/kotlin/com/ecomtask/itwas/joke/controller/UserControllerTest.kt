@@ -1,6 +1,6 @@
 package com.ecomtask.itwas.joke.controller
 
-import com.ecomtask.itwas.joke.dto.UserDTO
+import com.ecomtask.itwas.joke.dto.UserRequestDTO
 import com.ecomtask.itwas.joke.dto.mapping.UserMapper
 import com.ecomtask.itwas.joke.entity.User
 import com.ecomtask.itwas.joke.enums.UserType
@@ -36,7 +36,7 @@ class UserControllerTest {
     @Autowired
     private lateinit var objectMapper: ObjectMapper
 
-    private val validUserDTO = UserDTO(
+    private val validUserRequestDTO = UserRequestDTO(
         "testUser",
         1,
         "test",
@@ -44,7 +44,7 @@ class UserControllerTest {
         "NONE"
     )
 
-    private val invalidUserDTO = UserDTO(
+    private val invalidUserRequestDTO = UserRequestDTO(
         "",
         -50,
         "test",
@@ -64,7 +64,7 @@ class UserControllerTest {
 
     @Test
     fun `createUser return created user ID`() {
-        val jsonRequest = objectMapper.writeValueAsString(validUserDTO)
+        val jsonRequest = objectMapper.writeValueAsString(validUserRequestDTO)
         whenever(userMapper.userDTOtoUser(any())).thenReturn(createdUser)
         whenever(userService.createUser(any())).thenReturn(1L)
 
@@ -78,7 +78,7 @@ class UserControllerTest {
 
     @Test
     fun `createUser return exception`() {
-        val jsonRequest = objectMapper.writeValueAsString(invalidUserDTO)
+        val jsonRequest = objectMapper.writeValueAsString(invalidUserRequestDTO)
         val errorMessage = "Unable to perform mapping for UserDTO to User due to incorrect format of received fields"
         whenever(userService.createUser(any())).thenThrow(IncorrectUserFieldException(errorMessage))
 

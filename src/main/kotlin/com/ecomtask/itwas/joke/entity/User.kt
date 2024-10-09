@@ -4,7 +4,7 @@ import com.ecomtask.itwas.joke.enums.UserType
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = [Index(name = "login_index", columnList = "login", unique = true)])
 data class User (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +12,9 @@ data class User (
 
     @Column(nullable = false)
     var username: String = "",
+
+    @Column(nullable = false)
+    var login: String = "",
 
     @Column(nullable = false)
     var age: Int = 0,

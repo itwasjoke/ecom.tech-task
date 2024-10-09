@@ -1,6 +1,7 @@
 package com.ecomtask.itwas.joke.dto.mapping
 
-import com.ecomtask.itwas.joke.dto.UserDTO
+import com.ecomtask.itwas.joke.dto.UserRequestDTO
+import com.ecomtask.itwas.joke.dto.UserResponseDTO
 import com.ecomtask.itwas.joke.entity.User
 import com.ecomtask.itwas.joke.enums.UserType
 import com.ecomtask.itwas.joke.exception.user.IncorrectUserFieldException
@@ -8,22 +9,41 @@ import org.springframework.stereotype.Component
 
 @Component
 class UserMapper {
-    fun userDTOtoUser(userDTO: UserDTO): User {
+    fun userDTOtoUser(userRequestDTO: UserRequestDTO): User {
         val errorMessage = "Unable to perform mapping for UserDTO to User due to incorrect format of received fields"
         try {
-            val userType = UserType.valueOf(userDTO.userType)
-            if (userDTO.name.isEmpty() || userDTO.password.isEmpty() || userDTO.age <= 0) {
+            val userType = UserType.valueOf(userRequestDTO.userType)
+            if (userRequestDTO.name.isEmpty()
+                || userRequestDTO.login.isEmpty()
+                || userRequestDTO.password.isEmpty()
+                || userRequestDTO.age <= 0
+            ) {
                 throw IncorrectUserFieldException(errorMessage)
             }
             return User(
-                username = userDTO.name,
-                password = userDTO.password,
-                description = userDTO.description,
+                username = userRequestDTO.name,
+                login = userRequestDTO.login,
+                password = userRequestDTO.password,
+                description = userRequestDTO.description,
                 userType = userType,
-                age = userDTO.age
+                age = userRequestDTO.age
             )
         } catch (e: Exception){
             throw IncorrectUserFieldException(errorMessage)
         }
+    }
+    fun userToUserDTO(user: User): UserResponseDTO {
+        var userRole = when(user.userType){
+            UserType.NONE -> "Нет роли"
+            UserType.ADMIN -> "Администратор"
+            UserType.STUDENT -> "Cтудент"
+            UserType.TEACHER -> "Преподаватель"
+        }
+        return UserResponseDTO(
+            name = user.username,
+            age = user.age,
+            type = userRole,
+            description = user.description
+        )
     }
 }

@@ -1,10 +1,9 @@
 package com.ecomtask.itwas.joke.dto
 
-import com.ecomtask.itwas.joke.enums.UserType
-
-data class UserDTO(
+data class UserRequestDTO(
     val name: String,
     val age: Int,
+    val login: String,
     val password: String,
     val description: String?,
     val userType: String,
