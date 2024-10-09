@@ -4,6 +4,7 @@ import com.ecomtask.itwas.joke.dto.CourseRequestDTO
 import com.ecomtask.itwas.joke.dto.CourseResponseDTO
 import com.ecomtask.itwas.joke.dto.UserResponseDTO
 import com.ecomtask.itwas.joke.entity.Course
+import java.util.*
 
 interface CourseService {
     fun createCourse(courseRequestDTO: CourseRequestDTO): Long
@@ -12,4 +13,5 @@ interface CourseService {
     fun deleteCourse(id: Long)
     fun findCourseById(id: Long): Course
     fun getStudentListOfCourse(id: Long): List<UserResponseDTO>
+    fun deleteOldCourses(lateDate: Date)
 }

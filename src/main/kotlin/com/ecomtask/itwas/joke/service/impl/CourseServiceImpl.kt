@@ -12,6 +12,7 @@ import com.ecomtask.itwas.joke.service.CourseService
 import com.ecomtask.itwas.joke.service.UserService
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 @Transactional
@@ -52,5 +53,9 @@ open class CourseServiceImpl(
 
     override fun getStudentListOfCourse(id: Long): List<UserResponseDTO> {
         return userService.getUserListOfCourse(id)
+    }
+
+    override fun deleteOldCourses(lateDate: Date) {
+        courseRepository.deleteByDateEndBefore(lateDate)
     }
 }
