@@ -35,7 +35,7 @@ class User: UserDetails {
     @JsonIgnore
     var courses: MutableSet<Course> = mutableSetOf()
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return mutableListOf(SimpleGrantedAuthority(userType.toString()))
+        return mutableListOf(SimpleGrantedAuthority("ROLE_$userType"))
     }
 
     override fun getPassword(): String {

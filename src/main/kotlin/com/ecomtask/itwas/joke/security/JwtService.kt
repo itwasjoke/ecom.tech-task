@@ -24,7 +24,7 @@ class JwtService {
     fun generateToken(userCreated: User): String {
         val claims: MutableMap<String, Any> = HashMap()
         claims["id"] = userCreated.id
-        claims["role"] = userCreated.userType
+        claims["role"] = userCreated.userType.toString()
         return generateToken(claims, userCreated)
     }
 

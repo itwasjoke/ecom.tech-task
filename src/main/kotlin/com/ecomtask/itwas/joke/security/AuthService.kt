@@ -1,6 +1,5 @@
 package com.ecomtask.itwas.joke.security
 
-import com.ecomtask.itwas.joke.entity.User
 import com.ecomtask.itwas.joke.service.UserService
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
