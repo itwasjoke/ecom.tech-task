@@ -1,4 +1,4 @@
-package com.ecomtask.itwas.joke.customenum
+package com.ecomtask.itwas.joke.enumc
 
 enum class UserType {
     ADMIN,

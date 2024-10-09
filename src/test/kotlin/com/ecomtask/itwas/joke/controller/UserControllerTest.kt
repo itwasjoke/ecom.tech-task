@@ -4,7 +4,7 @@ import com.ecomtask.itwas.joke.dto.UserRequestDTO
 import com.ecomtask.itwas.joke.dto.UserResponseDTO
 import com.ecomtask.itwas.joke.dto.mapping.UserMapper
 import com.ecomtask.itwas.joke.entity.User
-import com.ecomtask.itwas.joke.customenum.UserType
+import com.ecomtask.itwas.joke.enumc.UserType
 import com.ecomtask.itwas.joke.exception.user.IncorrectUserFieldException
 import com.ecomtask.itwas.joke.exception.user.NoUserFoundException
 import com.ecomtask.itwas.joke.service.UserService
