@@ -1,6 +1,6 @@
 package com.ecomtask.itwas.joke.entity
 
-import com.ecomtask.itwas.joke.enums.UserType
+import com.ecomtask.itwas.joke.customenum.UserType
 import jakarta.persistence.*
 
 @Entity

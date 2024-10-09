@@ -23,7 +23,7 @@ class GlobalExceptionHandler: ResponseEntityExceptionHandler() {
     @ExceptionHandler
     fun handleNoUserFoundException(e: NoUserFoundException, request: WebRequest): ResponseEntity<Any>? {
         val body = "Пользователь не найден."
-        return handleExceptionInternal(e, body, HttpHeaders(), HttpStatus.BAD_REQUEST, request)
+        return handleExceptionInternal(e, body, HttpHeaders(), HttpStatus.NOT_FOUND, request)
     }
 
 }
