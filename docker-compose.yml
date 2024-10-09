@@ -15,10 +15,19 @@ services:
       - pg_ecomtask:/var/lib/postgresql/data
     ports:
       - "9601:5432"
+    networks:
+      - backend-network
   ecomtask_app:
     restart: always
     build: .
     ports:
       - "9600:8080"
-    depends_on:
-      - ecomtask_db
+#    depends_on:
+#      - ecomtask_db
+    networks:
+      - backend-network
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://ecomtask_db:5432/ecomtask
+networks:
+  backend-network:
+    driver: bridge

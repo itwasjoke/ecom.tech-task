@@ -27,6 +27,6 @@ data class User (
     @Enumerated(EnumType.STRING)
     var userType: UserType = UserType.NONE,
 
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
     var courses: MutableSet<Course> = mutableSetOf()
 )

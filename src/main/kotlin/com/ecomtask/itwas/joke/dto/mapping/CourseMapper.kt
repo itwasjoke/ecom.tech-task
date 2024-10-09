@@ -36,6 +36,7 @@ class CourseMapper(private val userMapper: UserMapper) {
         }
     }
     fun courseToCourseDTO(course: Course): CourseResponseDTO {
+        println(course)
         val listOfStudents = userMapper.userListToUserDTOList(course.students)
         val creator = course.creator?.let { userMapper.userToUserDTO(it) }
         if (creator != null) {

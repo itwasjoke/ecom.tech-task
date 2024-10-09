@@ -1,18 +1,6 @@
 package com.ecomtask.itwas.joke.entity
 
-import jakarta.persistence.CascadeType
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.JoinTable
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.OneToMany
-import jakarta.persistence.OneToOne
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.util.Date
 
 @Entity
@@ -34,11 +22,11 @@ data class Course (
     @Column(nullable = false)
     var dateEnd: Date = Date(),
 
-    @ManyToMany
+    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE], fetch = FetchType.EAGER)
     @JoinTable(
         name = "courses_students",
-        joinColumns = [JoinColumn(name = "course_id")],
-        inverseJoinColumns = [JoinColumn(name = "user_id")]
+        joinColumns = [JoinColumn(name = "course_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")]
     )
     var students: MutableSet<User> = mutableSetOf(),
 

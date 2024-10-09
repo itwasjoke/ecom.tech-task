@@ -4,17 +4,21 @@ import com.ecomtask.itwas.joke.dto.UserRequestDTO
 import com.ecomtask.itwas.joke.dto.UserResponseDTO
 import com.ecomtask.itwas.joke.dto.mapping.UserMapper
 import com.ecomtask.itwas.joke.entity.User
+import com.ecomtask.itwas.joke.exception.user.LoginAlreadyExistsException
 import com.ecomtask.itwas.joke.exception.user.NoUserFoundException
 import com.ecomtask.itwas.joke.repository.UserRepository
 import com.ecomtask.itwas.joke.service.UserService
 import org.springframework.stereotype.Service
 
 @Service
-class UserServiceImpl(
+open class UserServiceImpl(
     private val userRepository: UserRepository,
     private val userMapper: UserMapper
     ) : UserService {
     override fun createUser(userRequestDTO: UserRequestDTO): Long {
+        if (userRepository.existsUserByLogin(userRequestDTO.login)){
+            throw LoginAlreadyExistsException("User with login already exist at createUser fun")
+        }
         val userForCreate = userMapper.userDTOtoUser(userRequestDTO);
         val createdUser = userRepository.save(userForCreate)
         return createdUser.id
