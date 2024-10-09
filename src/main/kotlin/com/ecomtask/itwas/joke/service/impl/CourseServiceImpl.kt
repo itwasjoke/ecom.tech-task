@@ -21,8 +21,8 @@ open class CourseServiceImpl(
     private val courseMapper: CourseMapper,
     private val userService: UserService
     ): CourseService {
-    override fun createCourse(courseRequestDTO: CourseRequestDTO): Long {
-        val creator = userService.findUserById(courseRequestDTO.creator)
+    override fun createCourse(courseRequestDTO: CourseRequestDTO, login: String): Long {
+        val creator = userService.findUserByLogin(login)
         val course = courseRepository.save(courseMapper.courseDTOtoCourse(courseRequestDTO, creator))
         return course.id
     }

@@ -24,7 +24,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.cors.CorsConfiguration
 
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity

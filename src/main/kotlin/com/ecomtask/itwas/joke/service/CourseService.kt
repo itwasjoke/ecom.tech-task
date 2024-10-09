@@ -7,7 +7,7 @@ import com.ecomtask.itwas.joke.entity.Course
 import java.util.*
 
 interface CourseService {
-    fun createCourse(courseRequestDTO: CourseRequestDTO): Long
+    fun createCourse(courseRequestDTO: CourseRequestDTO, login: String): Long
     fun getCourse(id: Long): CourseResponseDTO
     fun addStudentForCourse(studentId: Long, courseId: Long)
     fun deleteCourse(id: Long)

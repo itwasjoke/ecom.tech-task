@@ -3,6 +3,7 @@ package com.ecomtask.itwas.joke.controller
 import com.ecomtask.itwas.joke.dto.UserRequestDTO
 import com.ecomtask.itwas.joke.dto.UserResponseDTO
 import com.ecomtask.itwas.joke.service.UserService
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
@@ -17,8 +18,10 @@ class UserController(private val userService: UserService) {
         return userService.createUser(userRequestDTO);
     }
     @GetMapping
-    fun getUserProfile(@RequestParam login: String): UserResponseDTO {
-        return userService.getUserProfile(login)
+    fun getUserProfile(request: HttpServletRequest): UserResponseDTO {
+        val auth = request.userPrincipal
+        val userDetails = auth.name
+        return userService.getUserProfile(userDetails)
     }
     @PutMapping
     fun editUserProfile(@RequestBody userRequestDTO: UserRequestDTO) {

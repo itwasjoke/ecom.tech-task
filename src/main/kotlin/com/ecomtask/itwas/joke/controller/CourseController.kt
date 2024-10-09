@@ -4,6 +4,7 @@ import com.ecomtask.itwas.joke.dto.CourseRequestDTO
 import com.ecomtask.itwas.joke.dto.CourseResponseDTO
 import com.ecomtask.itwas.joke.dto.UserResponseDTO
 import com.ecomtask.itwas.joke.service.CourseService
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.*
 )
 class CourseController(private val courseService: CourseService) {
     @PostMapping
-    fun createCourse(@RequestBody courseRequestDTO: CourseRequestDTO): Long {
-        return courseService.createCourse(courseRequestDTO);
+    fun createCourse(@RequestBody courseRequestDTO: CourseRequestDTO, request: HttpServletRequest): Long {
+        val auth = request.userPrincipal
+        val userDetails = auth.name
+        return courseService.createCourse(courseRequestDTO, userDetails)
     }
     @GetMapping
     fun getCourse(@RequestParam id: Long): CourseResponseDTO {
