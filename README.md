@@ -204,10 +204,10 @@
 
 </details>
 <details>
-<summary>GET /courses/{id} Просмотр списка учеников</summary>
+<summary>GET /courses/list/{id} Просмотр списка учеников</summary>
 
 ### Просмотр списка учеников
-`GET /courses/{id}`
+`GET /courses/list/{id}`
 
 #### Описание
 Возвращает список участников курса (учеников)
