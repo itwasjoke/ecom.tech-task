@@ -20,20 +20,20 @@ class CourseController(private val courseService: CourseService) {
         val userDetails = auth.name
         return courseService.createCourse(courseRequestDTO, userDetails)
     }
-    @GetMapping
-    fun getCourse(@RequestParam id: Long): CourseResponseDTO {
+    @GetMapping("{id}")
+    fun getCourse(@PathVariable id: Long): CourseResponseDTO {
         return courseService.getCourse(id)
     }
-    @GetMapping("/list")
-    fun getStudentsList(@RequestParam courseId: Long): List<UserResponseDTO> {
-        return courseService.getStudentListOfCourse(courseId)
+    @GetMapping("/list/{id}")
+    fun getStudentsList(@PathVariable id: Long): List<UserResponseDTO> {
+        return courseService.getStudentListOfCourse(id)
     }
     @PutMapping
     fun editCourseMainInfo(@RequestParam studentId: Long, @RequestParam courseId: Long) {
         courseService.addStudentForCourse(studentId, courseId)
     }
-    @DeleteMapping
-    fun deleteCourse(@RequestParam id: Long) {
+    @DeleteMapping("{id}")
+    fun deleteCourse(@PathVariable id: Long) {
         courseService.deleteCourse(id)
     }
 }

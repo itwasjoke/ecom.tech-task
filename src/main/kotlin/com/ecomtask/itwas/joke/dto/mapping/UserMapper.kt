@@ -42,6 +42,7 @@ class UserMapper {
         return UserResponseDTO(
             id = user.id,
             name = user.fullname,
+            login = user.login,
             age = user.age,
             type = userRole,
             description = user.description
