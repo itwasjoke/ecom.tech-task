@@ -31,14 +31,14 @@ class User: UserDetails {
     @Enumerated(EnumType.STRING)
     var userType: UserType = UserType.NONE
 
-    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JsonIgnore
     var courses: MutableSet<Course> = mutableSetOf()
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return mutableListOf(SimpleGrantedAuthority("ROLE_$userType"))
     }
 
-    @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var coursesWhatCreated: MutableSet<Course> = mutableSetOf()
 
     override fun getPassword(): String {
