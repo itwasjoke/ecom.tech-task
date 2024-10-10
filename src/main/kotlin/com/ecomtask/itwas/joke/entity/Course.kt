@@ -30,7 +30,7 @@ data class Course (
     )
     var students: MutableSet<User> = mutableSetOf(),
 
-    @ManyToOne(cascade = [CascadeType.ALL])
+    @ManyToOne
     @JoinColumn(name = "turn_id", nullable = false)
     var creator: User? = null
 )

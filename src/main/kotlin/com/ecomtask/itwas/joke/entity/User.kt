@@ -31,7 +31,7 @@ class User: UserDetails {
     @Enumerated(EnumType.STRING)
     var userType: UserType = UserType.NONE
 
-    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
     @JsonIgnore
     var courses: MutableSet<Course> = mutableSetOf()
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
