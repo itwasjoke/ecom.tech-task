@@ -36,11 +36,17 @@ open class UserServiceImpl(
         return userMapper.userToUserDTO(findUserByLogin(login))
     }
 
-    override fun editProfile(userRequestDTO: UserRequestDTO) {
+    override fun editProfile(userRequestDTO: UserRequestDTO, currentLogin: String) {
+        if (userRequestDTO.login != currentLogin) {
+            if (userRepository.existsUserByLogin(userRequestDTO.login)) {
+                throw LoginAlreadyExistsException("Login exists on editProfile fun")
+            }
+        }
         val userRequest = userMapper.userDTOtoUser(userRequestDTO)
         val user = findUserByLogin(userRequest.login)
         user.userType = userRequest.userType
         user.age = userRequest.age
+        user.login = userRequest.login
         user.description = userRequest.description
         user.fullname = userRequest.fullname
         userRepository.save(user)

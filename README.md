@@ -41,7 +41,7 @@
 | `login` | `string` | **Обязательный**. Логин пользователя |
 | `password` | `string` | **Обязательный**. Пароль |
 
-#### Response
+#### Response Body (JSON)
 ```json
 200 ОК
 {
@@ -98,7 +98,7 @@
     "userType": "STUDENT"
 }
 ```
-#### Response Body (JSON)
+#### Response Body (Plain text)
 ```json
 200 ОК
 1
@@ -130,7 +130,7 @@
     "userType": "STUDENT"
 }
 ```
-#### Response Body (JSON)
+#### Response Body
 ```json
 200 ОК
 ```
@@ -158,7 +158,7 @@
 | :-------- | :------- | :------------------------- |
 | `login` | `string` | **Обязательный**. Логин пользователя, которого нужно удалить |
 
-#### Response Body (JSON)
+#### Response Body
 ```json
 200 ОК
 ```
@@ -251,7 +251,7 @@
     "dateEnd": "2024-11-10"
 }
 ```
-#### Response Body (JSON)
+#### Response Body (Plain text)
 ```json
 200 ОК
 1
@@ -277,7 +277,7 @@
 | `courseId` | `Long` | **Обязательный**. ID конкретного курса |
 | `studentId` | `Long` | **Обязательный**. ID конкретного пользователя |
 
-#### Response Body (JSON)
+#### Response Body
 ```json
 200 ОК
 ```
@@ -298,11 +298,15 @@
 | Authorization   | `Bearer <token>`   | JWT токен |
 
 
-#### Response Body (JSON)
+#### Response Body
 ```json
 200 ОК
 ```
 </details>
+
+---
+
+Также написаны тесты для UserController, но пока что они работают до версии проекта ET-9.
 
 ---
 #### Андрей Васильев

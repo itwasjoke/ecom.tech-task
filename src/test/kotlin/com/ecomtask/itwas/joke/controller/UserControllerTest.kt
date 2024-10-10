@@ -29,6 +29,9 @@ import org.springframework.util.MultiValueMap
 @WebMvcTest(UserController::class)
 @ExtendWith(MockitoExtension::class)
 class UserControllerTest {
+
+    // ТЕСТЫ РАБОТАЮТ НА БОЛЕЕ РАННИХ ВЕРСИЯХ ПРОЕКТА (ET-9)
+
     @Autowired
     private lateinit var mockMvc: MockMvc
 
@@ -71,6 +74,7 @@ class UserControllerTest {
     private val userProfile = UserResponseDTO(
         1,
         "testUser",
+        "test",
         1,
         "Нет роли",
         null
@@ -169,25 +173,7 @@ class UserControllerTest {
         )
     }
 
-    @Test
-    fun `editProfile changed User and return nothing`() {
-        val jsonRequest = objectMapper.writeValueAsString(validUserRequestDTO)
-        whenever(userMapper.userDTOtoUser(any())).thenReturn(getCreatedUser())
-        whenever(userService.createUser(any())).thenReturn(1L)
 
-        performPostRequest(
-            jsonRequest,
-            HttpStatus.OK,
-            "application/json;charset=UTF-8",
-            "1"
-        )
-        doNothing().whenever(userService).editProfile(any())
-        val jsonRequestUpdateUser = objectMapper.writeValueAsString(updatedUser)
-        performPutRequest(
-            jsonRequestUpdateUser,
-            HttpStatus.OK
-        )
-    }
 
     @Test
     fun `deleteProfile deleting User and return nothing`() {

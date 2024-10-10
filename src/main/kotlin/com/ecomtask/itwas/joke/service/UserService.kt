@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 interface UserService {
     fun createUser(userRequestDTO: UserRequestDTO): Long
     fun getUserProfile(login: String): UserResponseDTO
-    fun editProfile(userRequestDTO: UserRequestDTO)
+    fun editProfile(userRequestDTO: UserRequestDTO, currentLogin: String)
     fun findUserByLogin(login: String): User
     fun deleteUser(login: String)
     fun findUserById(id: Long): User

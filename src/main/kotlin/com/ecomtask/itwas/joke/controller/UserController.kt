@@ -24,8 +24,10 @@ class UserController(private val userService: UserService) {
         return userService.getUserProfile(userDetails)
     }
     @PutMapping
-    fun editUserProfile(@RequestBody userRequestDTO: UserRequestDTO) {
-        userService.editProfile(userRequestDTO)
+    fun editUserProfile(@RequestBody userRequestDTO: UserRequestDTO, request: HttpServletRequest) {
+        val auth = request.userPrincipal
+        val userDetails = auth.name
+        userService.editProfile(userRequestDTO, userDetails)
     }
     @DeleteMapping
     fun deleteUser(@RequestParam login: String) {
